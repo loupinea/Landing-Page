@@ -3,91 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badu - Fashion for Everyone</title>
+    <title>Kouvr - The Cover That Protects with Style</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <h1>Badu</h1>
+    <header class="header">
+        <div class="logo">kouvr.</div>
+        <div class="nav-icons">
+            <span>🛒</span>
+            <span>👤</span>
+            <span>❓</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Kids</a></li>
-                <li><a href="#">Sale</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Cart</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>New Collection 2023</h2>
-        <p>Discover the latest trends in fashion</p>
-        <a href="#" class="btn">Shop Now</a>
-    </section>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search">
+    </div>
 
-    <!-- Product Grid -->
-    <section class="products">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$29.99</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>$39.99</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>$49.99</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/200" alt="Product 4">
-                <h3>Product 4</h3>
-                <p>$59.99</p>
-                <button>Add to Cart</button>
-            </div>
+    <div class="hero">
+        <!-- Hero image and content will go here -->
+    </div>
+
+    <section class="device-categories">
+        <h2 class="category-title">Browse Protection by Device:</h2>
+        <div class="category-grid">
+            <div class="category-card">Switch</div>
+            <div class="category-card">Joycon</div>
+            <div class="category-card">Dock</div>
+            <div class="category-card">Extras</div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <div class="new-releases">
+        <h2 class="releases-title">New Releases:</h2>
+        <div class="releases-grid">
+            <div class="release-card">
+                <h3 class="product-title">OLED Crystal Dock</h3>
+                <div class="price">$49.99</div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="release-card">
+                <h3 class="product-title">Star Kirby OLED Case</h3>
+                <div class="price">$59.99</div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="release-card">
+                <h3 class="product-title">Pink Skull Joycon Cover</h3>
+                <div class="price">$69.99</div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="collections">
+        <h2 class="category-title">Collection:</h2>
+        <div class="collections-grid">
+            <div class="collection-card">Pokemon</div>
+            <div class="collection-card">Astronomy</div>
+            <div class="collection-card">Shark</div>
+            <div class="collection-card">Sanrio</div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>About Us</h3>
-                <p>Badu is a global fashion brand offering stylish and affordable clothing for everyone.</p>
+            <div class="logo">kouvr.</div>
+            <p>The Cover That Protects with Style.</p>
+            <div class="footer-links">
+                <a href="#">Contact Us</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Delivery & Shipping</a>
+                <a href="#">Return / Refund</a>
+                <a href="#">Payment</a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Kids</a></li>
-                    <li><a href="#">Sale</a></li>
-                </ul>
+            <div class="social-icons">
+                <span>📷</span>
+                <span>📘</span>
+                <span>🐦</span>
+                <span>🎵</span>
+                <span>📺</span>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: support@badu.com</p>
-                <p>Phone: +1 234 567 890</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 Badu. All rights reserved.</p>
+            <select class="region-selector">
+                <option>CAD $ | Canada</option>
+            </select>
         </div>
     </footer>
 </body>
