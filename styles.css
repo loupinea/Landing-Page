@@ -177,11 +177,11 @@
 }
 
 .release-card:nth-child(2) {
-    background-image: url('images/kirby-case.png');
+    background-image: url('images/kirby-case.PNG');
 }
 
 .release-card:nth-child(3) {
-    background-image: url('images/skull-cover.png');
+    background-image: url('images/skull-cover.PNG');
 }
 
 /* Collection Section */
@@ -238,19 +238,19 @@
 
 /* Add specific collection images */
 .collection-card:nth-child(1)::before {
-    background-image: url('images/pokemon.jpg');
+    background-image: url('images/pokemon.JPG');
 }
 
 .collection-card:nth-child(2)::before {
-    background-image: url('images/astronomy.jpg');
+    background-image: url('images/astronomy.JPG');
 }
 
 .collection-card:nth-child(3)::before {
-    background-image: url('images/shark.jpg');
+    background-image: url('images/shark.JPG');
 }
 
 .collection-card:nth-child(4)::before {
-    background-image: url('images/sanrio.jpg');
+    background-image: url('images/sanrio.JPG');
 }
 
 /* Footer */
