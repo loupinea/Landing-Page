@@ -14,10 +14,9 @@
     background-color: white;
 }
 
-.logo-up {
-    height: 35px; 
-    width: auto; 
-    object-fit: contain;
+.logo {
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .nav-icons {
@@ -268,10 +267,10 @@ footer {
     text-align: center;
 }
 
-.logo-down {
-    height: 35px; 
-    width: auto; 
-    object-fit: contain;
+.logo {
+    font-size: 32px; /* Increased font size for the logo */
+    font-weight: bold; /* Make the logo bold */
+    margin-bottom: 20px; /* Add space below the logo */
 }
 
 .footer-content p {
