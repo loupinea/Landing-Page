@@ -1,0 +1,133 @@
+/* Additional responsive styles to complement Tailwind CSS */
+
+/* Mobile styles (up to 640px) */
+@media (max-width: 640px) {
+    .header {
+      padding: 15px 20px;
+    }
+    
+    .logo {
+      font-size: 28px;
+    }
+    
+    .hero {
+      height: 400px;
+    }
+    
+    .category-card, .collection-card {
+      min-height: 120px;
+    }
+    
+    .footer-content {
+      padding: 0 10px;
+    }
+    
+    .toast {
+      max-width: 90%;
+      left: 5%;
+      right: 5%;
+    }
+  }
+  
+  /* Tablet styles (641px to 1024px) */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .releases-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero {
+      height: 500px;
+    }
+  }
+  
+  /* Ensure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    button, 
+    .add-to-cart-btn,
+    .category-card,
+    .collection-card,
+    .nav-icons span {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    input[type="text"] {
+      font-size: 16px; /* Prevents iOS zoom on focus */
+    }
+    
+    /* Improved spacing for mobile */
+    .section {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    
+    /* Stack footer links on mobile */
+    .footer-links {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  
+  /* Landscape orientation adjustments */
+  @media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+      height: 300px;
+    }
+    
+    .category-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .collections-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Large desktop screens */
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .hero {
+      height: 700px;
+    }
+  }
+  
+  /* Print styles */
+  @media print {
+    .nav-icons,
+    .search-container,
+    .add-to-cart-btn,
+    footer {
+      display: none;
+    }
+    
+    body {
+      font-size: 12pt;
+      color: #000;
+      background: #fff;
+    }
+    
+    .logo {
+      font-size: 24pt;
+    }
+  }
+  
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  

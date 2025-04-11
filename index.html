@@ -4,90 +4,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kouvr - The Cover That Protects with Style</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'kouvr-beige': '#E8D9CF',
+                        'kouvr-gray': '#6A625D',
+                        'kouvr-dark': '#3D3B3A',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
-    <header class="header">
-        <div class="logo">kouvr.</div>
-        <div class="nav-icons">
-            <span>🛒</span>
-            <span>👤</span>
-            <span>❓</span>
+<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
+    <header class="flex justify-between items-center px-6 md:px-10 py-5 bg-white dark:bg-gray-800 shadow-sm">
+        <div class="text-4xl font-bold text-kouvr-dark dark:text-white">kouvr.</div>
+        <div class="flex gap-6 text-2xl">
+            <button class="hover:text-kouvr-gray transition-colors duration-200" id="cartIcon">🛒</button>
+            <button class="hover:text-kouvr-gray transition-colors duration-200" id="userIcon">👤</button>
+            <button class="hover:text-kouvr-gray transition-colors duration-200" id="helpIcon">❓</button>
+            <button class="ml-2 p-1 rounded-full bg-gray-200 dark:bg-gray-600" id="darkModeToggle">
+                <span class="dark:hidden">🌙</span>
+                <span class="hidden dark:inline">☀️</span>
+            </button>
         </div>
     </header>
 
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search">
+    <div class="max-w-3xl mx-auto px-4 py-5">
+        <div class="relative">
+            <input type="text" class="w-full py-3 px-5 border-2 border-kouvr-dark dark:border-gray-600 rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-kouvr-gray dark:bg-gray-700 dark:text-white" placeholder="Search">
+            <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-kouvr-dark dark:text-gray-300" id="searchButton">🔍</button>
+        </div>
     </div>
 
-    <div class="hero">
-        <!-- Hero image and content will go here -->
+    <div class="w-full h-[600px] bg-cover bg-center bg-no-repeat mb-10 relative group" style="background-image: url('images/sanrio-banner.jpg')">
+        <div class="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <h1 class="text-4xl font-bold mb-4">Protect With Style</h1>
+                <button class="bg-white text-kouvr-dark px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all duration-200">Shop Now</button>
+            </div>
+        </div>
     </div>
 
-    <section class="device-categories">
-        <h2 class="category-title">Browse Protection by Device:</h2>
-        <div class="category-grid">
-            <div class="category-card">Switch</div>
-            <div class="category-card">Joycon</div>
-            <div class="category-card">Dock</div>
-            <div class="category-card">Extras</div>
+    <section class="px-6 md:px-10 py-5">
+        <h2 class="text-xl font-semibold mb-6 text-kouvr-dark dark:text-white">Browse Protection by Device:</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto mb-16">
+            <div class="bg-red-100 dark:bg-red-900 rounded-lg aspect-square flex flex-col items-center justify-end p-4 cursor-pointer transform hover:scale-105 transition-transform duration-200 bg-[url('images/switch-icon.png')] bg-no-repeat bg-[length:100px] bg-[center_45px] pt-24">
+                <span class="text-kouvr-dark dark:text-white font-medium">Switch</span>
+            </div>
+            <div class="bg-yellow-100 dark:bg-yellow-900 rounded-lg aspect-square flex flex-col items-center justify-end p-4 cursor-pointer transform hover:scale-105 transition-transform duration-200 bg-[url('images/joycon-icon.png')] bg-no-repeat bg-[length:100px] bg-[center_45px] pt-24">
+                <span class="text-kouvr-dark dark:text-white font-medium">Joycon</span>
+            </div>
+            <div class="bg-green-100 dark:bg-green-900 rounded-lg aspect-square flex flex-col items-center justify-end p-4 cursor-pointer transform hover:scale-105 transition-transform duration-200 bg-[url('images/dock-icon.png')] bg-no-repeat bg-[length:100px] bg-[center_45px] pt-24">
+                <span class="text-kouvr-dark dark:text-white font-medium">Dock</span>
+            </div>
+            <div class="bg-blue-100 dark:bg-blue-900 rounded-lg aspect-square flex flex-col items-center justify-end p-4 cursor-pointer transform hover:scale-105 transition-transform duration-200 bg-[url('images/extras-icon.png')] bg-no-repeat bg-[length:100px] bg-[center_45px] pt-24">
+                <span class="text-kouvr-dark dark:text-white font-medium">Extras</span>
+            </div>
         </div>
     </section>
 
-    <div class="new-releases">
-        <h2 class="releases-title">New Releases:</h2>
-        <div class="releases-grid">
-            <div class="release-card">
-                <h3 class="product-title">OLED Crystal Dock</h3>
-                <div class="price">$49.99</div>
-                <button class="add-to-cart">Add to Cart</button>
+    <div class="py-12 px-6 md:px-10 bg-kouvr-beige dark:bg-gray-800">
+        <h2 class="text-xl font-semibold mb-6 text-kouvr-dark dark:text-white">New Releases:</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 product-card">
+                <div class="h-48 bg-cover bg-center bg-[url('images/crystal-dock.PNG')]"></div>
+                <div class="p-5 flex flex-col gap-3">
+                    <h3 class="font-bold text-kouvr-dark dark:text-white">OLED Crystal Dock</h3>
+                    <div class="font-bold text-lg text-kouvr-dark dark:text-white">$49.99</div>
+                    <button class="bg-kouvr-dark dark:bg-gray-600 text-white py-2 px-4 rounded hover:bg-opacity-90 transition-colors duration-200 add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="release-card">
-                <h3 class="product-title">Star Kirby OLED Case</h3>
-                <div class="price">$59.99</div>
-                <button class="add-to-cart">Add to Cart</button>
+            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 product-card">
+                <div class="h-48 bg-cover bg-center bg-[url('images/kirby-case.PNG')]"></div>
+                <div class="p-5 flex flex-col gap-3">
+                    <h3 class="font-bold text-kouvr-dark dark:text-white">Star Kirby OLED Case</h3>
+                    <div class="font-bold text-lg text-kouvr-dark dark:text-white">$59.99</div>
+                    <button class="bg-kouvr-dark dark:bg-gray-600 text-white py-2 px-4 rounded hover:bg-opacity-90 transition-colors duration-200 add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
-            <div class="release-card">
-                <h3 class="product-title">Pink Skull Joycon Cover</h3>
-                <div class="price">$69.99</div>
-                <button class="add-to-cart">Add to Cart</button>
+            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 product-card">
+                <div class="h-48 bg-cover bg-center bg-[url('images/skull-cover.PNG')]"></div>
+                <div class="p-5 flex flex-col gap-3">
+                    <h3 class="font-bold text-kouvr-dark dark:text-white">Pink Skull Joycon Cover</h3>
+                    <div class="font-bold text-lg text-kouvr-dark dark:text-white">$69.99</div>
+                    <button class="bg-kouvr-dark dark:bg-gray-600 text-white py-2 px-4 rounded hover:bg-opacity-90 transition-colors duration-200 add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <section class="collections">
-        <h2 class="category-title">Collection:</h2>
-        <div class="collections-grid">
-            <div class="collection-card">Pokemon</div>
-            <div class="collection-card">Astronomy</div>
-            <div class="collection-card">Shark</div>
-            <div class="collection-card">Sanrio</div>
+    <section class="px-6 md:px-10 py-10">
+        <h2 class="text-xl font-semibold mb-6 text-kouvr-dark dark:text-white">Collection:</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            <div class="h-64 rounded-lg overflow-hidden relative group collection-card">
+                <div class="absolute inset-0 bg-cover bg-center bg-[url('images/pokemon.JPG')] group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                <div class="absolute bottom-0 w-full p-4 text-white text-xl font-bold">Pokemon</div>
+            </div>
+            <div class="h-64 rounded-lg overflow-hidden relative group collection-card">
+                <div class="absolute inset-0 bg-cover bg-center bg-[url('images/astronomy.JPG')] group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                <div class="absolute bottom-0 w-full p-4 text-white text-xl font-bold">Astronomy</div>
+            </div>
+            <div class="h-64 rounded-lg overflow-hidden relative group collection-card">
+                <div class="absolute inset-0 bg-cover bg-center bg-[url('images/shark.JPG')] group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                <div class="absolute bottom-0 w-full p-4 text-white text-xl font-bold">Shark</div>
+            </div>
+            <div class="h-64 rounded-lg overflow-hidden relative group collection-card">
+                <div class="absolute inset-0 bg-cover bg-center bg-[url('images/sanrio.JPG')] group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
+                <div class="absolute bottom-0 w-full p-4 text-white text-xl font-bold">Sanrio</div>
+            </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="logo">kouvr.</div>
-            <p>The Cover That Protects with Style.</p>
-            <div class="footer-links">
-                <a href="#">Contact Us</a>
-                <a href="#">Terms of Use</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Delivery & Shipping</a>
-                <a href="#">Return / Refund</a>
-                <a href="#">Payment</a>
+    <footer class="bg-kouvr-gray dark:bg-gray-900 text-white py-10 px-6 md:px-10 mt-10">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="text-4xl font-bold mb-3">kouvr.</div>
+            <p class="mb-10">The Cover That Protects with Style.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mb-8">
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Contact Us</a>
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Terms of Use</a>
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Privacy Policy</a>
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Delivery & Shipping</a>
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Return / Refund</a>
+                <a href="#" class="hover:text-gray-300 underline underline-offset-4">Payment</a>
             </div>
-            <div class="social-icons">
-                <span>📷</span>
-                <span>📘</span>
-                <span>🐦</span>
-                <span>🎵</span>
-                <span>📺</span>
+            <div class="flex justify-center gap-5 text-2xl mb-8">
+                <a href="#" class="hover:text-gray-300 transition-colors duration-200">📷</a>
+                <a href="#" class="hover:text-gray-300 transition-colors duration-200">📘</a>
+                <a href="#" class="hover:text-gray-300 transition-colors duration-200">🐦</a>
+                <a href="#" class="hover:text-gray-300 transition-colors duration-200">🎵</a>
+                <a href="#" class="hover:text-gray-300 transition-colors duration-200">📺</a>
             </div>
-            <select class="region-selector">
+            <select class="bg-gray-700 text-white py-2 px-4 rounded-md">
                 <option>CAD $ | Canada</option>
+                <option>USD $ | United States</option>
+                <option>EUR € | Europe</option>
             </select>
         </div>
     </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-kouvr-dark dark:text-white">Your Cart</h3>
+                <button id="closeCartModal" class="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-white">✕</button>
+            </div>
+            <div id="cartItems" class="mb-4 max-h-60 overflow-y-auto">
+                <!-- Cart items will be dynamically added here -->
+                <p class="text-gray-500 dark:text-gray-400 text-center py-4">Your cart is empty</p>
+            </div>
+            <div class="border-t pt-4 flex justify-between items-center">
+                <div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">Total:</p>
+                    <p class="text-xl font-bold text-kouvr-dark dark:text-white" id="cartTotal">$0.00</p>
+                </div>
+                <button class="bg-kouvr-dark dark:bg-gray-600 text-white py-2 px-6 rounded hover:bg-opacity-90 transition-colors duration-200">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dark-mode.js"></script>
+    <script src="js/device-testing.js"></script>
 </body>
 </html>
