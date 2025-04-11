@@ -5,37 +5,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize components
-    initDarkMode();
+    // Note: Dark mode is now handled in dark-mode.js
     initCartFunctionality();
     initSearchFunctionality();
     initProductInteractions();
     initAnimations();
 });
-
-/**
- * Dark Mode Toggle Functionality
- */
-function initDarkMode() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const html = document.documentElement;
-    
-    // Check for saved user preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        html.classList.add('dark');
-    }
-    
-    darkModeToggle.addEventListener('click', function() {
-        if (html.classList.contains('dark')) {
-            html.classList.remove('dark');
-            localStorage.setItem('darkMode', 'disabled');
-            showToast('Light mode activated');
-        } else {
-            html.classList.add('dark');
-            localStorage.setItem('darkMode', 'enabled');
-            showToast('Dark mode activated');
-        }
-    });
-}
 
 /**
  * Cart Functionality

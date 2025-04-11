@@ -1,19 +1,29 @@
 /**
  * Enhanced dark mode functionality for Kouvr website
- * This file extends the dark mode toggle with additional features
+ * This file handles all dark mode toggle functionality
  */
 
-// Enhanced dark mode functionality
-function enhanceDarkMode() {
+// Main dark mode functionality
+document.addEventListener('DOMContentLoaded', function() {
+    initDarkMode();
+});
+
+function initDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
     
-    // Check for system preference on initial load
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        if (localStorage.getItem('darkMode') === null) {
-            // Only apply if user hasn't set a preference
+    // Check for saved user preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        html.classList.add('dark');
+        updateDarkModeUI(true);
+    } else {
+        // Check for system preference only if user hasn't set a preference
+        if (localStorage.getItem('darkMode') === null && 
+            window.matchMedia && 
+            window.matchMedia('(prefers-color-scheme: dark)').matches) {
             html.classList.add('dark');
             localStorage.setItem('darkMode', 'enabled');
+            updateDarkModeUI(true);
         }
     }
     
@@ -23,51 +33,25 @@ function enhanceDarkMode() {
             // Only apply if user hasn't set a preference
             if (event.matches) {
                 html.classList.add('dark');
+                updateDarkModeUI(true);
             } else {
                 html.classList.remove('dark');
+                updateDarkModeUI(false);
             }
         }
     });
     
-    // Apply dark mode to all elements that need special handling
-    function applyDarkMode(isDark) {
-        // Update icon in toggle button
-        const darkIcon = darkModeToggle.querySelector('.dark\\:hidden');
-        const lightIcon = darkModeToggle.querySelector('.hidden.dark\\:inline');
-        
-        if (isDark) {
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-            
-            // Add dark mode specific classes to elements
-            document.querySelectorAll('[data-dark-class]').forEach(el => {
-                el.classList.add(el.dataset.darkClass);
-            });
-        } else {
-            darkIcon.classList.remove('hidden');
-            lightIcon.classList.add('hidden');
-            
-            // Remove dark mode specific classes from elements
-            document.querySelectorAll('[data-dark-class]').forEach(el => {
-                el.classList.remove(el.dataset.darkClass);
-            });
-        }
-    }
-    
-    // Initialize dark mode state
-    applyDarkMode(html.classList.contains('dark'));
-    
-    // Override the existing click handler
+    // Add click event listener
     darkModeToggle.addEventListener('click', function() {
         if (html.classList.contains('dark')) {
             html.classList.remove('dark');
             localStorage.setItem('darkMode', 'disabled');
-            applyDarkMode(false);
+            updateDarkModeUI(false);
             showToast('Light mode activated');
         } else {
             html.classList.add('dark');
             localStorage.setItem('darkMode', 'enabled');
-            applyDarkMode(true);
+            updateDarkModeUI(true);
             showToast('Dark mode activated');
         }
     });
@@ -78,14 +62,63 @@ function enhanceDarkMode() {
             darkModeToggle.click();
         }
     });
+    
+    // Add tooltip
+    darkModeToggle.setAttribute('title', 'Toggle Dark Mode (Shift+D)');
 }
 
-// Call this function after the DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // This will be called after the main script.js is loaded
-    enhanceDarkMode();
-    
-    // Add a note about keyboard shortcut
+// Update UI elements for dark mode
+function updateDarkModeUI(isDark) {
     const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.setAttribute('title', 'Toggle Dark Mode (Shift+D)');
-});
+    
+    // Update icon in toggle button
+    const darkIcon = darkModeToggle.querySelector('.dark\\:hidden');
+    const lightIcon = darkModeToggle.querySelector('.hidden.dark\\:inline');
+    
+    if (isDark) {
+        if (darkIcon) darkIcon.classList.add('hidden');
+        if (lightIcon) lightIcon.classList.remove('hidden');
+        
+        // Add dark mode specific classes to elements
+        document.querySelectorAll('[data-dark-class]').forEach(el => {
+            el.classList.add(el.dataset.darkClass);
+        });
+    } else {
+        if (darkIcon) darkIcon.classList.remove('hidden');
+        if (lightIcon) lightIcon.classList.add('hidden');
+        
+        // Remove dark mode specific classes from elements
+        document.querySelectorAll('[data-dark-class]').forEach(el => {
+            el.classList.remove(el.dataset.darkClass);
+        });
+    }
+}
+
+// Toast notification function (duplicated from script.js to avoid dependencies)
+function showToast(message, duration = 3000) {
+    // Remove existing toast if present
+    const existingToast = document.querySelector('.toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create new toast
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    
+    document.body.appendChild(toast);
+    
+    // Show toast
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Hide toast after duration
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, duration);
+}
