@@ -12,43 +12,21 @@ function initDarkMode() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     const html = document.documentElement;
     
-    // Check for saved user preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        html.classList.add('dark');
-        updateDarkModeUI(true);
-    } else {
-        // Check for system preference only if user hasn't set a preference
-        if (localStorage.getItem('darkMode') === null && 
-            window.matchMedia && 
-            window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            html.classList.add('dark');
-            localStorage.setItem('darkMode', 'enabled');
-            updateDarkModeUI(true);
-        }
-    }
-    
-    // Listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-        if (localStorage.getItem('darkMode') === null) {
-            // Only apply if user hasn't set a preference
-            if (event.matches) {
-                html.classList.add('dark');
-                updateDarkModeUI(true);
-            } else {
-                html.classList.remove('dark');
-                updateDarkModeUI(false);
-            }
-        }
-    });
+    // Always start in light mode by default
+    html.classList.remove('dark');
+    localStorage.setItem('darkMode', 'disabled');
+    updateDarkModeUI(false);
     
     // Add click event listener
     darkModeToggle.addEventListener('click', function() {
         if (html.classList.contains('dark')) {
+            // Switch to light mode
             html.classList.remove('dark');
             localStorage.setItem('darkMode', 'disabled');
             updateDarkModeUI(false);
             showToast('Light mode activated');
         } else {
+            // Switch to dark mode
             html.classList.add('dark');
             localStorage.setItem('darkMode', 'enabled');
             updateDarkModeUI(true);
