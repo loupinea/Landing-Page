@@ -55,7 +55,6 @@ function detectBrowser() {
         name: browserName,
         version: browserVersion,
         userAgent: userAgent,
-        supportsPrefersDarkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').media !== 'not all',
         supportsLocalStorage: testLocalStorage()
     };
 }
@@ -92,67 +91,45 @@ function testDarkMode() {
     }
     console.log('Test passed: Dark mode toggle button found');
     
-    // Test 2: Check if dark mode class can be applied
+    // Test 2: Verify site starts in light mode
     const html = document.documentElement;
-    const isDarkMode = html.classList.contains('dark');
-    
-    // Toggle dark mode
-    if (isDarkMode) {
-        html.classList.remove('dark');
-        setTimeout(() => {
-            if (!html.classList.contains('dark')) {
-                console.log('Test passed: Dark mode class can be removed');
-            } else {
-                console.error('Test failed: Could not remove dark mode class');
-            }
-            // Restore original state
-            html.classList.add('dark');
-        }, 100);
+    if (html.classList.contains('dark')) {
+        console.error('Test failed: Site should start in light mode by default');
     } else {
-        html.classList.add('dark');
-        setTimeout(() => {
-            if (html.classList.contains('dark')) {
-                console.log('Test passed: Dark mode class can be added');
-            } else {
-                console.error('Test failed: Could not add dark mode class');
-            }
-            // Restore original state
-            html.classList.remove('dark');
-        }, 100);
+        console.log('Test passed: Site starts in light mode by default');
     }
     
-    // Test 3: Check if localStorage works for dark mode
-    try {
-        const originalSetting = localStorage.getItem('darkMode');
-        localStorage.setItem('darkMode', 'test-value');
-        const testValue = localStorage.getItem('darkMode');
-        
-        if (testValue === 'test-value') {
-            console.log('Test passed: localStorage works for dark mode settings');
+    // Test 3: Check if dark mode toggle works
+    console.log('Testing dark mode toggle...');
+    darkModeToggle.click();
+    
+    setTimeout(() => {
+        if (html.classList.contains('dark')) {
+            console.log('Test passed: Dark mode toggle adds dark class');
+            
+            // Test switching back to light mode
+            darkModeToggle.click();
+            
+            setTimeout(() => {
+                if (!html.classList.contains('dark')) {
+                    console.log('Test passed: Dark mode toggle removes dark class');
+                } else {
+                    console.error('Test failed: Dark mode toggle did not remove dark class');
+                }
+            }, 100);
         } else {
-            console.error('Test failed: localStorage not working correctly');
+            console.error('Test failed: Dark mode toggle did not add dark class');
         }
-        
-        // Restore original value
-        if (originalSetting) {
-            localStorage.setItem('darkMode', originalSetting);
-        } else {
-            localStorage.removeItem('darkMode');
-        }
-    } catch (e) {
-        console.error('Test failed: localStorage error -', e.message);
-    }
+    }, 100);
     
     // Test 4: Check if dark mode styles are applied correctly
     const darkModeElements = [
         { selector: 'body', property: 'backgroundColor' },
-        { selector: 'header', property: 'backgroundColor' },
-        { selector: '.text-kouvr-dark', property: 'color' }
+        { selector: '.header', property: 'backgroundColor' },
+        { selector: '.category-card', property: 'color' }
     ];
     
-    const originalState = html.classList.contains('dark');
-    
-    // Force dark mode on
+    // Force dark mode on for testing
     html.classList.add('dark');
     setTimeout(() => {
         const darkStyles = {};
@@ -163,7 +140,7 @@ function testDarkMode() {
             }
         });
         
-        // Force dark mode off
+        // Force dark mode off for testing
         html.classList.remove('dark');
         setTimeout(() => {
             const lightStyles = {};
@@ -183,17 +160,12 @@ function testDarkMode() {
             if (allDifferent) {
                 console.log('Test passed: Dark mode styles are applied correctly');
             }
-            
-            // Restore original state
-            if (originalState) {
-                html.classList.add('dark');
-            }
         }, 100);
     }, 100);
     
     // Add a visual indicator for testing
     const testIndicator = document.createElement('div');
-    testIndicator.className = 'fixed top-0 left-0 bg-green-500 dark:bg-blue-500 text-white px-3 py-1 text-xs z-50';
+    testIndicator.className = 'fixed top-0 left-0 bg-green-500 text-white px-3 py-1 text-xs z-50';
     testIndicator.textContent = 'Dark Mode Testing Active';
     document.body.appendChild(testIndicator);
     

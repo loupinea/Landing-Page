@@ -1,6 +1,6 @@
 /**
- * Enhanced dark mode functionality for Kouvr website
- * This file handles all dark mode toggle functionality
+ * Dark mode toggle functionality for Kouvr website
+ * This file handles the dark mode toggle button
  */
 
 // Main dark mode functionality
@@ -14,22 +14,17 @@ function initDarkMode() {
     
     // Always start in light mode by default
     html.classList.remove('dark');
-    localStorage.setItem('darkMode', 'disabled');
-    updateDarkModeUI(false);
+    localStorage.removeItem('darkMode');
     
     // Add click event listener
     darkModeToggle.addEventListener('click', function() {
         if (html.classList.contains('dark')) {
             // Switch to light mode
             html.classList.remove('dark');
-            localStorage.setItem('darkMode', 'disabled');
-            updateDarkModeUI(false);
             showToast('Light mode activated');
         } else {
             // Switch to dark mode
             html.classList.add('dark');
-            localStorage.setItem('darkMode', 'enabled');
-            updateDarkModeUI(true);
             showToast('Dark mode activated');
         }
     });
@@ -45,34 +40,7 @@ function initDarkMode() {
     darkModeToggle.setAttribute('title', 'Toggle Dark Mode (Shift+D)');
 }
 
-// Update UI elements for dark mode
-function updateDarkModeUI(isDark) {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    
-    // Update icon in toggle button
-    const darkIcon = darkModeToggle.querySelector('.dark\\:hidden');
-    const lightIcon = darkModeToggle.querySelector('.hidden.dark\\:inline');
-    
-    if (isDark) {
-        if (darkIcon) darkIcon.classList.add('hidden');
-        if (lightIcon) lightIcon.classList.remove('hidden');
-        
-        // Add dark mode specific classes to elements
-        document.querySelectorAll('[data-dark-class]').forEach(el => {
-            el.classList.add(el.dataset.darkClass);
-        });
-    } else {
-        if (darkIcon) darkIcon.classList.remove('hidden');
-        if (lightIcon) lightIcon.classList.add('hidden');
-        
-        // Remove dark mode specific classes from elements
-        document.querySelectorAll('[data-dark-class]').forEach(el => {
-            el.classList.remove(el.dataset.darkClass);
-        });
-    }
-}
-
-// Toast notification function (duplicated from script.js to avoid dependencies)
+// Toast notification function
 function showToast(message, duration = 3000) {
     // Remove existing toast if present
     const existingToast = document.querySelector('.toast');
